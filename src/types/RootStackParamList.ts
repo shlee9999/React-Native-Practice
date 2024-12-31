@@ -1,6 +1,6 @@
 export type RootStackParamList = {
   Home: undefined;
-  Profile: { name: string };
+  Profile: { username: string };
   Form1: undefined;
   Form2: undefined;
 };
