@@ -2,12 +2,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FamilyDangScreen from './src/screens/FamilyDangScreen';
-import HomeNavigator from './src/screens/HomeScreen';
-import LogScreen from './src/screens/LogScreen';
-import MyPageScreen from './src/screens/MyPage';
-import SocialScreen from './src/screens/SocialScreen';
-import { TabBarParamList } from './src/types/RootStackParamList';
+import FamilyDangScreen from './screens/FamilyDangScreen';
+import HomeNavigator from './screens/HomeScreen';
+import LogScreen from './screens/LogScreen';
+import MyPageScreen from './screens/MyPage';
+import SocialScreen from './screens/SocialScreen';
+import { TabBarParamList } from './types/RootStackParamList';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator<TabBarParamList>();
@@ -90,6 +91,25 @@ const TabNavigator = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    async function enableMocking() {
+      if (__DEV__) {
+        await import('../msw.polyfills');
+        const { server } = await import('./mocks/server');
+        server.listen({ onUnhandledRequest: 'bypass' });
+      }
+    }
+
+    enableMocking();
+
+    return () => {
+      if (__DEV__) {
+        const { server } = require('./mocks/server');
+        server.close();
+      }
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>

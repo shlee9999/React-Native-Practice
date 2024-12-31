@@ -9,19 +9,17 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import WalkScreen from './WalkScreen';
 
 type HomeStackProps = {
-  Home: undefined;
+  Main: undefined;
   Walk: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackProps>();
 
-type Props = NativeStackScreenProps<HomeStackProps, 'Home'>;
+type Props = NativeStackScreenProps<HomeStackProps, 'Main'>;
 
 function HomeScreen({ navigation }: Props) {
   const fetchData = async () => {
-    const response = await axios.get(
-      'https://jsonplaceholder.typicode.com/todos/1',
-    );
+    const response = await axios.get('https://api.example.com/api/users');
     return response.data;
   };
   const { data } = useQuery({
@@ -49,7 +47,7 @@ export default function HomeNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Main"
         component={HomeScreen}
         options={{ headerShown: false }}
       />
