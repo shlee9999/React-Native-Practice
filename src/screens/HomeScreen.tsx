@@ -28,6 +28,7 @@ function HomeScreen({ navigation }: Props) {
       console.error(err);
     }
   };
+
   useEffect(() => {
     fetchData()
       .then(res => {
@@ -36,6 +37,7 @@ function HomeScreen({ navigation }: Props) {
       })
       .catch(err => console.error(err));
   }, []);
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Home Screen</Text>

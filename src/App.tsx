@@ -8,7 +8,8 @@ import LogScreen from './screens/LogScreen';
 import MyPageScreen from './screens/MyPage';
 import SocialScreen from './screens/SocialScreen';
 import { TabBarParamList } from './types/RootStackParamList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator<TabBarParamList>();
@@ -91,12 +92,14 @@ const TabNavigator = () => {
 };
 
 const App = () => {
+  const [isMswReady, setIsMswReady] = useState(false);
   useEffect(() => {
     async function enableMocking() {
       if (__DEV__) {
         const { server } = await import('./mocks/server');
         server.listen({ onUnhandledRequest: 'bypass' });
         console.log('MSW Listening...');
+        setIsMswReady(true);
       }
     }
 
@@ -110,6 +113,10 @@ const App = () => {
       }
     };
   }, []);
+
+  if (!isMswReady) {
+    return <Text>Initial Loading...</Text>;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

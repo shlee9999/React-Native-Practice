@@ -9,12 +9,7 @@ export const handlers = [
         { id: 1, name: 'John' },
         { id: 2, name: 'Jane' },
       ],
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
+      { status: 200 },
     );
   }),
 
