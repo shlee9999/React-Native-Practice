@@ -2,18 +2,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Icon from 'react-native-vector-icons/Ionicons';
-import HomeScreen from './src/screens/HomeScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import WalkScreen from './src/screens/WalkScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TabBarParamList } from './src/types/RootStackParamList';
-import MyPageScreen from './src/screens/MyPage';
 import FamilyDangScreen from './src/screens/FamilyDangScreen';
+import HomeNavigator from './src/screens/HomeScreen';
 import LogScreen from './src/screens/LogScreen';
+import MyPageScreen from './src/screens/MyPage';
 import SocialScreen from './src/screens/SocialScreen';
+import { TabBarParamList } from './src/types/RootStackParamList';
 
 const queryClient = new QueryClient();
-const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator<TabBarParamList>();
 
 const TabNavigator = () => {
@@ -22,10 +18,11 @@ const TabNavigator = () => {
       screenOptions={{
         tabBarActiveTintColor: '#783D16',
         tabBarLabelPosition: 'below-icon',
+        headerShown: false,
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeNavigator}
         options={{
           tabBarIcon: ({ color, focused, size }) => (
             <Icon
@@ -96,14 +93,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="MainTabs"
-            component={TabNavigator}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Walk" component={WalkScreen} />
-        </Stack.Navigator>
+        <TabNavigator />
       </NavigationContainer>
     </QueryClientProvider>
   );
