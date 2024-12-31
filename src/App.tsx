@@ -94,7 +94,6 @@ const App = () => {
   useEffect(() => {
     async function enableMocking() {
       if (__DEV__) {
-        await import('../msw.polyfills');
         const { server } = await import('./mocks/server');
         server.listen({ onUnhandledRequest: 'bypass' });
         console.log('MSW Listening...');

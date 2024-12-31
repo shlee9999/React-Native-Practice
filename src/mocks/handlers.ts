@@ -3,13 +3,18 @@ import { BASE_URL } from '../constants/baseUrl';
 
 export const handlers = [
   http.get(`${BASE_URL}/users`, () => {
-    console.log('hello');
+    console.log('MSW: Intercepted GET request to /users!!');
     return HttpResponse.json(
       [
         { id: 1, name: 'John' },
         { id: 2, name: 'Jane' },
       ],
-      { status: 200 },
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
     );
   }),
 
