@@ -1,0 +1,111 @@
+{
+  "api-get": {
+    "prefix": "api-get",
+    "body": [
+      "const fetchData = async () => {",
+      "  try {",
+      "    const response = await fetch('${1:https://api.example.com/data}');",
+      "    if (!response.ok) {",
+      "      throw new Error('Network response was not ok');",
+      "    }",
+      "    const data = await response.json();",
+      "    ${2:console.log(data);}",
+      "  } catch (error) {",
+      "    console.error('Error fetching data:', error);",
+      "  }",
+      "};"
+    ],
+    "description": "Fetch data using GET request"
+  },
+  "api-post": {
+    "prefix": "api-post",
+    "body": [
+      "const postData = async (${1:newData}) => {",
+      "  try {",
+      "    const response = await fetch('${2:https://api.example.com/data}', {",
+      "      method: 'POST',",
+      "      headers: {",
+      "        'Content-Type': 'application/json',",
+      "      },",
+      "      body: JSON.stringify(${1:newData}),",
+      "    });",
+      "    if (!response.ok) {",
+      "      throw new Error('Network response was not ok');",
+      "    }",
+      "    const result = await response.json();",
+      "    ${3:console.log(result);}",
+      "  } catch (error) {",
+      "    console.error('Error posting data:', error);",
+      "  }",
+      "};"
+    ],
+    "description": "Post data using POST request"
+  },
+  "api-delete": {
+    "prefix": "api-delete",
+    "body": [
+      "const deleteData = async (${1:id}) => {",
+      "  try {",
+      "    const response = await fetch(`${2:https://api.example.com/data}/${${1:id}}`, {",
+      "      method: 'DELETE',",
+      "    });",
+      "    if (!response.ok) {",
+      "      throw new Error('Network response was not ok');",
+      "    }",
+      "    ${3:console.log('Data deleted successfully');}",
+      "  } catch (error) {",
+      "    console.error('Error deleting data:', error);",
+      "  }",
+      "};"
+    ],
+    "description": "Delete data using DELETE request"
+  },
+  "api-put": {
+    "prefix": "api-put",
+    "body": [
+      "const updateData = async (${1:id}, ${2:updatedData}) => {",
+      "  try {",
+      "    const response = await fetch(`${3:https://api.example.com/data}/${${1:id}}`, {",
+      "      method: 'PUT',",
+      "      headers: {",
+      "        'Content-Type': 'application/json',",
+      "      },",
+      "      body: JSON.stringify(${2:updatedData}),",
+      "    });",
+      "    if (!response.ok) {",
+      "      throw new Error('Network response was not ok');",
+      "    }",
+      "    const result = await response.json();",
+      "    ${4:console.log(result);}",
+      "  } catch (error) {",
+      "    console.error('Error updating data:', error);",
+      "  }",
+      "};"
+    ],
+    "description": "Update data using PUT request"
+  },
+  "api-patch": {
+    "prefix": "api-patch",
+    "body": [
+      "const patchData = async (${1:id}, ${2:partialData}) => {",
+      "  try {",
+      "    const response = await fetch(`${3:https://api.example.com/data}/${${1:id}}`, {",
+      "      method: 'PATCH',",
+      "      headers: {",
+      "        'Content-Type': 'application/json',",
+      "      },",
+      "      body: JSON.stringify(${2:partialData}),",
+      "    });",
+      "    if (!response.ok) {",
+      "      throw new Error('Network response was not ok');",
+      "    }",
+      "    const result = await response.json();",
+      "    ${4:console.log(result);}",
+      "  } catch (error) {",
+      "    console.error('Error patching data:', error);",
+      "  }",
+      "};"
+    ],
+    "description": "Patch data using PATCH request"
+  }
+}
