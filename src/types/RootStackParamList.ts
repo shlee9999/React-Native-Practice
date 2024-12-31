@@ -1,6 +1,8 @@
-export type RootStackParamList = {
+export type TabBarParamList = {
   Home: undefined;
+  Log: undefined;
+  Social: undefined;
+  FamilyDang: undefined;
+  MyPage: undefined;
   Profile: { username: string };
-  Form1: undefined;
-  Form2: undefined;
 };

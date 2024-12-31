@@ -3,12 +3,12 @@ import { Text, View } from 'react-native';
 import { TabBarParamList } from '../types/RootStackParamList';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-type Props = BottomTabScreenProps<TabBarParamList, 'Profile'>;
+type Props = BottomTabScreenProps<TabBarParamList, 'MyPage'>;
 
-export default function ProfileScreen({ navigation, route }: Props) {
+export default function MyPageScreen({ navigation }: Props) {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
-      <Text>This is {route.params.username}'s profile</Text>
+      <Text>This is My profile</Text>
     </View>
   );
 }
