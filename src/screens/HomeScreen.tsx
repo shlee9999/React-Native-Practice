@@ -2,9 +2,7 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import WalkScreen from './WalkScreen';
 
@@ -18,27 +16,44 @@ const Stack = createNativeStackNavigator<HomeStackProps>();
 type Props = NativeStackScreenProps<HomeStackProps, 'Main'>;
 
 function HomeScreen({ navigation }: Props) {
+  console.log('Fetch Data');
+  const [data, setData] = useState();
   const fetchData = async () => {
-    const response = await axios.get('https://api.example.com/api/users');
-    return response.data;
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/1`,
+    );
+    const data = await response.json();
+    return data;
   };
-  const { data } = useQuery({
-    queryKey: ['JSON'],
-    queryFn: fetchData,
-  });
-  console.log('Home Render!');
-  console.log('useQuery Data', data);
+  // const { data } = useQuery({
+  //   queryKey: ['JSON'],
+  //   queryFn: fetchData,
+  // });
+  // console.log('Home Render!');
+  // console.log('useQuery Data', data);
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Home Screen</Text>
-      <Text>{JSON.stringify(data)}</Text>
-      <Button
+      {/* <Button
         title="산책하기"
         onPress={() => {
           navigation.navigate('Walk');
         }}
+      /> */}
+      <Button
+        title="API 호출"
+        onPress={() => {
+          console.log('클릭');
+          fetchData()
+            .then(res => {
+              console.log('데이터 패칭 로그');
+              setData(res);
+            })
+            .catch(err => console.error(err));
+        }}
       />
+      <Text>data: {JSON.stringify({ data })}</Text>
     </View>
   );
 }

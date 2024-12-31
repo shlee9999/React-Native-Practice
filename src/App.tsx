@@ -97,6 +97,7 @@ const App = () => {
         await import('../msw.polyfills');
         const { server } = await import('./mocks/server');
         server.listen({ onUnhandledRequest: 'bypass' });
+        console.log('MSW Listening...');
       }
     }
 
@@ -105,6 +106,7 @@ const App = () => {
     return () => {
       if (__DEV__) {
         const { server } = require('./mocks/server');
+        console.log('MSW Closed!');
         server.close();
       }
     };

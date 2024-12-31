@@ -1,7 +1,9 @@
 import { http, HttpResponse } from 'msw';
+import { BASE_URL } from '../constants/baseUrl';
 
 export const handlers = [
-  http.get('https://api.example.com/api/users', () => {
+  http.get(`${BASE_URL}/users`, () => {
+    console.log('hello');
     return HttpResponse.json(
       [
         { id: 1, name: 'John' },
@@ -11,7 +13,7 @@ export const handlers = [
     );
   }),
 
-  http.post('https://api.example.com/api/users', () => {
+  http.post(`${BASE_URL}/users`, () => {
     return HttpResponse.json(
       {
         message: 'User created successfully',
@@ -20,7 +22,7 @@ export const handlers = [
     );
   }),
 
-  http.put('https://api.example.com/api/users/:id', ({ params }) => {
+  http.put(`${BASE_URL}/users/:id`, ({ params }) => {
     const { id } = params;
     return HttpResponse.json(
       {
@@ -31,7 +33,7 @@ export const handlers = [
     );
   }),
 
-  http.delete('https://api.example.com/api/users/:id', () => {
+  http.delete(`${BASE_URL}/users/:id`, () => {
     return HttpResponse.json(
       {
         message: 'User deleted successfully',
