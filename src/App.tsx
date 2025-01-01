@@ -93,6 +93,7 @@ const TabNavigator = () => {
 
 const App = () => {
   const [isMswReady, setIsMswReady] = useState(false);
+
   useEffect(() => {
     async function enableMocking() {
       if (__DEV__) {

@@ -3,9 +3,9 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import WalkScreen from './WalkScreen';
+import { StyleSheet, Text, View } from 'react-native';
 import { BASE_URL } from '../constants/baseUrl';
+import WalkScreen from './WalkScreen';
 
 type HomeStackProps = {
   Main: undefined;
@@ -41,18 +41,6 @@ function HomeScreen({ navigation }: Props) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Home Screen</Text>
-      <Button
-        title="API 호출"
-        onPress={() => {
-          console.log('클릭');
-          fetchData()
-            .then(res => {
-              console.log(res);
-              setData(res);
-            })
-            .catch(err => console.error(err));
-        }}
-      />
       <Text>data: {JSON.stringify({ data })}</Text>
     </View>
   );
