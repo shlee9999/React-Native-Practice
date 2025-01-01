@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Icon from 'react-native-vector-icons/Ionicons';
-import FamilyDangScreen from './screens/FamilyDangScreen';
-import HomeNavigator from './screens/HomeScreen';
-import LogScreen from './screens/LogScreen';
-import MyPageScreen from './screens/MyPage';
-import SocialScreen from './screens/SocialScreen';
-import { TabBarParamList } from './types/RootStackParamList';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Text } from 'react-native';
+import { TabBarParamList } from 'types/RootStackParamList';
+import Icon from 'react-native-vector-icons/Ionicons';
+import FamilyDangScreen from '~screens/FamilyDangScreen';
+import HomeNavigator from '~screens/HomeScreen';
+import LogScreen from '~screens/LogScreen';
+import MyPageScreen from '~screens/MyPage';
+import SocialScreen from '~screens/SocialScreen';
 
 const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator<TabBarParamList>();
