@@ -1,28 +1,18 @@
 import { BASE_URL } from '../../constants/baseUrl';
 
-type FetchHomeDataRequestType = {
-  // Define request type here
+export type FetchHomeDataResponseType = {
+  id: number;
+  name: string;
 };
 
-type FetchHomeDataResponseType = {
-  // Define response type here
-};
+export const fetchHomeData = async (): Promise<FetchHomeDataResponseType> => {
+  const response = await fetch(`${BASE_URL}/users`);
+  const data = await response.json();
 
-const fetchHomeData = async (
-  params: FetchHomeDataRequestType,
-): Promise<FetchHomeDataResponseType> => {
-  try {
-    const queryParams = new URLSearchParams(
-      params as Record<string, string>,
-    ).toString();
-    const response = await fetch(`${BASE_URL}/data?queryParams`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data: FetchHomeDataResponseType = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
+  if (!response.ok) {
+    console.log('Error response:', data);
+    throw new Error(data.error || 'Network response was not ok');
   }
+
+  return data as FetchHomeDataResponseType;
 };
