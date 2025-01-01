@@ -41,4 +41,15 @@ export const handlers = [
       { status: 200 },
     );
   }),
+
+  http.all('*', async ({ request }) => {
+    return HttpResponse.json(
+      {
+        error: '등록되지 않은 url입니다.',
+        url: request.url,
+        method: request.method,
+      },
+      { status: 404 },
+    );
+  }),
 ];
