@@ -115,9 +115,7 @@ const App = () => {
     };
   }, []);
 
-  if (!isMswReady) {
-    return <Text>Initial Loading...</Text>;
-  }
+  if (__DEV__ && !isMswReady) return <Text>Initial Loading...</Text>;
 
   return (
     <QueryClientProvider client={queryClient}>
